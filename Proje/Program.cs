@@ -46,6 +46,7 @@
                 {
                     case 1:
                         menu.DisplayMenu();
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 2:
                         Console.WriteLine("Siparişinizi girin (numaralarla, virgülle ayrılmış):");
@@ -71,8 +72,10 @@
                             else
                             {
                                 Console.WriteLine($"{item} stokta yok veya yanlış bir seçim yaptınız.");
+                                Console.WriteLine("--------------------------------------------------------------------------------------");
                             }
                         }
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 3:
                         Console.WriteLine("Siparişiniz:");
@@ -84,6 +87,7 @@
                         orderDictionary.Clear();
                         totalPrice = 0.0m;
                         Console.WriteLine("Ödeme işlemi tamamlandı.");
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 4:
                         DisplayInventory(inventory);
@@ -92,6 +96,7 @@
                         return;
                     default:
                         Console.WriteLine("Geçersiz seçim.");
+                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                 }
             }
