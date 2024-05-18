@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EMOJSsjCF99MMu8AxLqTAzJdVAM679W3KNnWIBrO7YBTcSbnX3miiSxhsYBe75xvooQbNvBCBXCzRrThR5S/HQ==",
+  "dgSpecHash": "7ygRGYUbltTg9JYEypf9y0pDREauGonEbmhgUsOuVXbFWpG2X/ZSuTweFnyXsq/9KRT1lB/9FYyfykedUF2uSA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Murat Berk\\Documents\\GitHub\\veriyapilari\\Proje\\Proje.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Murat Berk\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

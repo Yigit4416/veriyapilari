@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Menu
+public class MenuOld
 {
     private TreeNode<string> root;
 
-    public Menu()
+    public MenuOld()
     {
         root = new TreeNode<string>("Menu");
     }
