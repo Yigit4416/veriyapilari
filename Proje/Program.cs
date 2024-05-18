@@ -4,6 +4,7 @@
     {
         Menu menu = new Menu();
         Dictionary<string, int> inventory = new Dictionary<string, int>();
+        Dictionary<string, decimal> pricing = new Dictionary<string, decimal>();
 
         menu.AddMenuItem(new string[] { "Çorbalar" }, "Mercimek Çorbası (1)");
         menu.AddMenuItem(new string[] { "Çorbalar" }, "Tarhana Çorbası (2)");
@@ -22,7 +23,17 @@
         inventory["Baklava (6)"] = 12;
         inventory["Sütlaç (7)"] = 6;
 
+        // Fiyatlar
+        pricing["Mercimek Çorbası (1)"] = 15.0m;
+        pricing["Tarhana Çorbası (2)"] = 12.0m;
+        pricing["Kebap (3)"] = 30.0m;
+        pricing["Köfte (4)"] = 25.0m;
+        pricing["Ispanak (5)"] = 20.0m;
+        pricing["Baklava (6)"] = 18.0m;
+        pricing["Sütlaç (7)"] = 10.0m;
+
         Queue<string> orderQueue = new Queue<string>();
+        decimal totalPrice = 0.0m;
 
         while (true)
         {
@@ -47,7 +58,8 @@
                             {
                                 orderQueue.Enqueue(item);
                                 inventory[item]--;
-                                Console.WriteLine($"{item} siparişe eklendi. Kalan envanter: {inventory[item]}");
+                                totalPrice += pricing[item];
+                                Console.WriteLine($"{item} siparişe eklendi. Kalan envanter: {inventory[item]}, Fiyat: {pricing[item]} TL");
                             }
                             else
                             {
@@ -61,7 +73,9 @@
                         {
                             Console.WriteLine(item);
                         }
+                        Console.WriteLine($"Toplam Tutar: {totalPrice} TL");
                         orderQueue.Clear();
+                        totalPrice = 0.0m;
                         Console.WriteLine("Ödeme işlemi tamamlandı.");
                         break;
                     case 4:
@@ -85,7 +99,6 @@
     {
         // Menu traversal to find item by number (not implemented here).
         // This is a placeholder for actual logic to map number to menu item.
-#pragma warning disable CS8603 // Olası null başvuru dönüşü.
         return number switch
         {
             "1" => "Mercimek Çorbası (1)",
@@ -97,7 +110,6 @@
             "7" => "Sütlaç (7)",
             _ => null,
         };
-#pragma warning restore CS8603 // Olası null başvuru dönüşü.
     }
 
     static void DisplayInventory(Dictionary<string, int> inventory)
