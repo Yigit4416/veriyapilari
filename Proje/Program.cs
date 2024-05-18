@@ -16,7 +16,7 @@
 
         while (true)
         {
-            Console.WriteLine("Menü için (1), hesabınız için (2), ödeme yapmak için (3), çıkmak için (4)");
+            Console.WriteLine("Menü için (1), seçim yapmak için (2), hesap için (3), çıkmak için (4)");
             string kullaniciGirdisi = Console.ReadLine();
 
             if (Int32.TryParse(kullaniciGirdisi, out int secim))
@@ -33,7 +33,7 @@
                         foreach (var selection in selections)
                         {
                             orderQueue.Enqueue(selection.Trim());
-                        }
+                        }as
                         Console.WriteLine("Siparişiniz eklendi.");
                         break;
                     case 3:
