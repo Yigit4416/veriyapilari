@@ -32,7 +32,8 @@
         pricing["Baklava (6)"] = 18.0m;
         pricing["Sütlaç (7)"] = 10.0m;
 
-        Dictionary<string, int> orderDictionary = new Dictionary<string, int>();
+        Queue<string> orderQueue = new Queue<string>();
+        Dictionary<string, int> orderSummary = new Dictionary<string, int>();
         decimal totalPrice = 0.0m;
 
         while (true)
@@ -46,7 +47,6 @@
                 {
                     case 1:
                         menu.DisplayMenu();
-                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 2:
                         Console.WriteLine("Siparişinizi girin (numaralarla, virgülle ayrılmış):");
@@ -57,13 +57,14 @@
                             string item = GetMenuItemByNumber(selection.Trim());
                             if (item != null && inventory.ContainsKey(item) && inventory[item] > 0)
                             {
-                                if (orderDictionary.ContainsKey(item))
+                                orderQueue.Enqueue(item);
+                                if (orderSummary.ContainsKey(item))
                                 {
-                                    orderDictionary[item]++;
+                                    orderSummary[item]++;
                                 }
                                 else
                                 {
-                                    orderDictionary[item] = 1;
+                                    orderSummary[item] = 1;
                                 }
                                 inventory[item]--;
                                 totalPrice += pricing[item];
@@ -72,22 +73,20 @@
                             else
                             {
                                 Console.WriteLine($"{item} stokta yok veya yanlış bir seçim yaptınız.");
-                                Console.WriteLine("--------------------------------------------------------------------------------------");
                             }
                         }
-                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 3:
                         Console.WriteLine("Siparişiniz:");
-                        foreach (var kvp in orderDictionary)
+                        foreach (var kvp in orderSummary)
                         {
                             Console.WriteLine($"{kvp.Value} x {kvp.Key} = {kvp.Value * pricing[kvp.Key]} TL");
                         }
                         Console.WriteLine($"Toplam Tutar: {totalPrice} TL");
-                        orderDictionary.Clear();
+                        orderQueue.Clear();
+                        orderSummary.Clear();
                         totalPrice = 0.0m;
                         Console.WriteLine("Ödeme işlemi tamamlandı.");
-                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                     case 4:
                         DisplayInventory(inventory);
@@ -96,7 +95,6 @@
                         return;
                     default:
                         Console.WriteLine("Geçersiz seçim.");
-                        Console.WriteLine("--------------------------------------------------------------------------------------");
                         break;
                 }
             }
@@ -109,8 +107,6 @@
 
     static string GetMenuItemByNumber(string number)
     {
-        // Menu traversal to find item by number (not implemented here).
-        // This is a placeholder for actual logic to map number to menu item.
         return number switch
         {
             "1" => "Mercimek Çorbası (1)",
