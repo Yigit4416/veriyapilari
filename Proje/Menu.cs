@@ -1,31 +1,6 @@
-﻿// TreeNode Sınıfı
-public class TreeNode<T>
-{
-    public T Value { get; set; }
-    public List<TreeNode<T>> Children { get; private set; }
+﻿using System;
+using System.Collections.Generic;
 
-    public TreeNode(T value)
-    {
-        Value = value;
-        Children = new List<TreeNode<T>>();
-    }
-
-    public void AddChild(TreeNode<T> child)
-    {
-        Children.Add(child);
-    }
-
-    public void Traverse(int depth = 0)
-    {
-        Console.WriteLine(new string(' ', depth * 2) + Value);
-        foreach (var child in Children)
-        {
-            child.Traverse(depth + 1);
-        }
-    }
-}
-
-// Yemek Menüsü Sınıfı
 public class Menu
 {
     private TreeNode<string> root;
@@ -56,5 +31,20 @@ public class Menu
     public void DisplayMenu()
     {
         root.Traverse();
+    }
+
+    public static string GetMenuItemByNumber(string number)
+    {
+        return number switch
+        {
+            "1" => "Mercimek Çorbası (1)",
+            "2" => "Tarhana Çorbası (2)",
+            "3" => "Kebap (3)",
+            "4" => "Köfte (4)",
+            "5" => "Ispanak (5)",
+            "6" => "Baklava (6)",
+            "7" => "Sütlaç (7)",
+            _ => null,
+        };
     }
 }
