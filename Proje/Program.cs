@@ -32,12 +32,12 @@
         pricing["Baklava (6)"] = 18.0m;
         pricing["Sütlaç (7)"] = 10.0m;
 
-        Queue<string> orderQueue = new Queue<string>();
+        Dictionary<string, int> orderDictionary = new Dictionary<string, int>();
         decimal totalPrice = 0.0m;
 
         while (true)
         {
-            Console.WriteLine("Menü için (1), hesabınız için (2), ödeme yapmak için (3), envanteri görüntülemek için (4), çıkmak için (5)");
+            Console.WriteLine("Menü için (1), seçim yapmak için (2), ödeme yapmak için (3), envanteri görüntülemek için (4), çıkmak için (5)");
             string kullaniciGirdisi = Console.ReadLine();
 
             if (Int32.TryParse(kullaniciGirdisi, out int secim))
@@ -53,10 +53,17 @@
 
                         foreach (var selection in selections)
                         {
-                            string item = GetMenuItemByNumber(menu, selection.Trim());
+                            string item = GetMenuItemByNumber(selection.Trim());
                             if (item != null && inventory.ContainsKey(item) && inventory[item] > 0)
                             {
-                                orderQueue.Enqueue(item);
+                                if (orderDictionary.ContainsKey(item))
+                                {
+                                    orderDictionary[item]++;
+                                }
+                                else
+                                {
+                                    orderDictionary[item] = 1;
+                                }
                                 inventory[item]--;
                                 totalPrice += pricing[item];
                                 Console.WriteLine($"{item} siparişe eklendi. Kalan envanter: {inventory[item]}, Fiyat: {pricing[item]} TL");
@@ -69,12 +76,12 @@
                         break;
                     case 3:
                         Console.WriteLine("Siparişiniz:");
-                        foreach (var item in orderQueue)
+                        foreach (var kvp in orderDictionary)
                         {
-                            Console.WriteLine(item);
+                            Console.WriteLine($"{kvp.Value} x {kvp.Key} = {kvp.Value * pricing[kvp.Key]} TL");
                         }
                         Console.WriteLine($"Toplam Tutar: {totalPrice} TL");
-                        orderQueue.Clear();
+                        orderDictionary.Clear();
                         totalPrice = 0.0m;
                         Console.WriteLine("Ödeme işlemi tamamlandı.");
                         break;
@@ -95,7 +102,7 @@
         }
     }
 
-    static string GetMenuItemByNumber(Menu menu, string number)
+    static string GetMenuItemByNumber(string number)
     {
         // Menu traversal to find item by number (not implemented here).
         // This is a placeholder for actual logic to map number to menu item.
