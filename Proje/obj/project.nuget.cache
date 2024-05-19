@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PvaLU+qwSFC9vMucQB2BBazYL6n1pEs8wJRDXdLjRrR/OoFdzvCH6MYWsp2/ZscgfTI8PNaDsGVfIG5lFueAoA==",
+  "dgSpecHash": "7ygRGYUbltTg9JYEypf9y0pDREauGonEbmhgUsOuVXbFWpG2X/ZSuTweFnyXsq/9KRT1lB/9FYyfykedUF2uSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell\\Desktop\\veri yapıları yeni\\Proje\\Proje\\Proje.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Murat Berk\\Documents\\GitHub\\veriyapilari\\Proje\\Proje.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Murat Berk\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
